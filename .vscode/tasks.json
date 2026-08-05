@@ -8,9 +8,11 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-std=c++20",
-                "${file}",
-                /*"main.cpp",
-                "isEven.cpp",*/
+                //"${file}",
+                "main.cpp",
+                "energia_calc.cpp",
+                "energia_conv.cpp",
+                "energia_input.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
@@ -34,9 +36,10 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-std=c++20",
-                "${file}",
-                /*"main.cpp", //AQUI TINHA UM ${file} QUE EU TROQUEI POR main.cpp
-                "isEven.cpp",*/
+                "main.cpp",
+                "energia_calc.cpp",
+                "energia_conv.cpp",
+                "energia_input.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
