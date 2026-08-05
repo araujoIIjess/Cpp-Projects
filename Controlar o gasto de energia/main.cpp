@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdint>
 
 double getBoughtEnergy(){
 
@@ -26,10 +25,10 @@ double getRestantEnergy(double bought_energy){
         std::cout << "Insira o valor da energia que sobrou: \n";
         std::cin >> energia_restante;
     //Se a energia restante for maior, reinicia o loop
-    }while(energia_restante > bought_energy);
+    }while(energia_restante > bought_energy);//NEEDS FIX -> Input validaton
 
     return energia_restante;
-    
+
 }
 
 double MonthlyConsume(double inicio_mes, double final_mes ){
@@ -41,7 +40,7 @@ double MonthlyConsume(double inicio_mes, double final_mes ){
 }
 //Função para calcular o gasto semanal
 double WeeklyConsume(double monthly_average ){
-    const int monthly_weeks = 4;//NEEDS FIX
+    constexpr int monthly_weeks = 4;//NEEDS FIX -> Nem todo mês tem 4 semanas
     /*weekly_media será igual à
     energia que sobra no final do mês a dividir pelos dias da semana
     */
@@ -51,12 +50,20 @@ double WeeklyConsume(double monthly_average ){
 }
 //Funçao para calcular o gasto diario
 double DailyConsume(double weekly_average){
-    const int days {7};//NEEDS FIX
+    constexpr int days {7};//NEEDS FIX
     /*O consumo diario é calculado a partir da
     divisao da energia gasta semanalmente pelos dias da semana
     */
     double media {weekly_average / days};
     return media;
+
+}
+
+//Função em que se vai inserir um valor em kwh e será convertido p kz
+double kWh_to_kz(double kWh_value){
+    constexpr double _1kWh {12.8};
+    double energia_em_kz {kWh_value * _1kWh};
+    return energia_em_kz;
 
 }
 
@@ -77,15 +84,15 @@ int main(){
 
     //Calculando a energia gasta num mes
     energia_total = MonthlyConsume(energia_inicioMes, energia_finalMes);
-    std::cout << "Este mes gastaram-se: " << energia_total << " Kwh \n";
+    std::cout << "Este mes gastaram-se: " << energia_total << " kWh \n";
 
     //Energia gasta semanalmente
     energia_semanal = WeeklyConsume(energia_total);
-    std::cout << "A media semanal estimada do gasto de energia eh de: " << energia_semanal << " Kwh" << '\n';
+    std::cout << "A media semanal estimada do gasto de energia eh de: " << energia_semanal << " kWh" << '\n';
 
     //Energia gasta diariamente
     energia_diaria = DailyConsume(energia_semanal);
-    std::cout << "A media diaria estimada do gasto de energia eh de: " << energia_diaria << " Kwh \n";
+    std::cout << "A media diaria estimada do gasto de energia eh de: " << energia_diaria << " kWh \n";
 
     return 0;
 }
