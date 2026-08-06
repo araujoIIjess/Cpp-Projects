@@ -1,5 +1,6 @@
 #include <iostream>
 #include "energia_input.h"
+//#include "energia_conv.h"
 //Funções relacionadas com input
 double getBoughtEnergy(){
 
@@ -31,3 +32,15 @@ double getRestantEnergy(double bought_energy){
     return energia_restante;
 
 }
+#if 0
+void EnergyValueSelection(double kz_value, double kWh_value){
+    /*Função que determina se o usuario quer ver a energia em kWh ou kz
+    Inutil por enquanto*/
+    int opc {};
+    std::cout << "Deseja ver a energia em kWh [1] ou em kz [2] \n";
+    std::cin >> opc;
+    if(opc == 1){
+        k
+    }
+}
+#endif

@@ -17,24 +17,32 @@ int main(){
     //Energia que resta no final do mês
     double energia_finalMes {getRestantEnergy(energia_inicioMes)};
     //Energia no inicio - energia no fim
-    double energia_total {};
+    double energia_total {MonthlyConsume(energia_inicioMes, energia_finalMes)};
     //Energia gasta semanalmente
-    double energia_semanal {};
+    double energia_semanal {WeeklyConsume(energia_total)};
     //Energia gasta diariamente
-    double energia_diaria {};
+    double energia_diaria {DailyConsume(energia_semanal)};
+
+    //Energia em kwanza - variável que guarda o equivalente em kz da energia comprada em kWh
+    double energia_inicioMes_kz {kWh_to_kz(energia_inicioMes)};
+    //variável que guarda o equivalente em k da energia que sobra
+    double energia_finalMes_kz {kWh_to_kz(energia_finalMes)};
+    //variávl que guarda o equivalnte em kz da energia total
+    double energia_total_kz {kWh_to_kz(energia_total)};
 
     //Calculando a energia gasta num mes
-    energia_total = MonthlyConsume(energia_inicioMes, energia_finalMes);
     std::cout << "Este mes gastaram-se: " << energia_total << " kWh \n";
 
     //Energia gasta semanalmente
-    energia_semanal = WeeklyConsume(energia_total);
     std::cout << "A media semanal estimada do gasto de energia eh de: " << energia_semanal << " kWh" << '\n';
 
     //Energia gasta diariamente
-    energia_diaria = DailyConsume(energia_semanal);
     std::cout << "A media diaria estimada do gasto de energia eh de: " << energia_diaria << " kWh \n";
 
-    std::cout << "vose eh mulher?";
+    //Output do equivalente a enervia comprada em kwanza
+    std::cout << "Este mes comprou-se o equivalente a: " << energia_inicioMes_kz << " kz \n"
+    << "Sobrou o equivalente a: " << energia_finalMes_kz << " kz \n"
+    << "Consumiu-se o equivalente a: " << energia_total_kz << " kz"; 
+
     return 0;
 }
