@@ -1,13 +1,12 @@
-#include <iostream>
-
-double kWh_to_kz(double kWh_value){
-    constexpr double _1kWh {12.8};
-    double energia_em_kz {kWh_value * _1kWh};
-    return energia_em_kz;
-
-}
+#include<iostream>
+#include<string>
 
 int main(){
-    std::cout << kWh_to_kz(2500);
+    std::string ex {};
+
+    std::cout << ": \n";
+    std::getline(std::cin, ex);
+    std::cout << "Pos: " << ex.find('@');
+    //if(ex.find('@'))
     return 0;
 }

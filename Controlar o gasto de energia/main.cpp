@@ -15,7 +15,7 @@ int main(){
     //Energia no inicio do mês
     double energia_inicioMes {getBoughtEnergy()};
     //Energia que resta no final do mês
-    double energia_finalMes {getRestantEnergy(energia_inicioMes)};
+    double energia_finalMes {getRestantEnergy(energia_inicioMes)}; 
     //Energia no inicio - energia no fim
     double energia_total {MonthlyConsume(energia_inicioMes, energia_finalMes)};
     //Energia gasta semanalmente

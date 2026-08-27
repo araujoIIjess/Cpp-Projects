@@ -32,15 +32,27 @@ double getRestantEnergy(double bought_energy){
     return energia_restante;
 
 }
-#if 0
-void EnergyValueSelection(double kz_value, double kWh_value){
-    /*Função que determina se o usuario quer ver a energia em kWh ou kz
-    Inutil por enquanto*/
+
+
+double EnergyValueSelection(){
+    //Funçao para o usuario escolher se quer ver o valor em kz ou kwh
+    /*
+        b = bought
+        r = restant
+    */
+    double bEnergy_kz {};
+    double rEnergy_kz {};
     int opc {};
-    std::cout << "Deseja ver a energia em kWh [1] ou em kz [2] \n";
+
+    std::cout << "Prima 1 se deseja inserir o valor em kz, prima 2 se deseja inserir em kWh \n";
     std::cin >> opc;
-    if(opc == 1){
-        k
+
+    switch(opc){
+        case 1:
+            bEnergy_kz = getBoughtEnergy();
+            rEnergy_kz = getRestantEnergy(bEnergy_kz);
+            
+        break;
     }
 }
-#endif
+
