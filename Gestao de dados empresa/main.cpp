@@ -2,6 +2,7 @@
 #include<array>
 #include<string>
 #include<cstdint>
+#include<cctype>
 //unção para obter o nome do cliente
 std::string getClientName(){
     //nome do cliente
@@ -38,42 +39,33 @@ std::string getClientmail(){
     }while(client_email == "" || found);
 
     return client_email;
-
 }
 
 int main(){
-    //Variavel que pede e guarda o nome do cliente
-    std::string client_name {getClientName()};
-    //Variavel que pede e guarda o email do cliente
-    std::string client_email {getClientmail()};
-    //Variável que guarda o NIF do cliente
-    uint64_t client_nif {00000000000000};
-
-
-
-    //Loop pedindo o nome do cliente
-   /*do{
-        //O loop se repete enquanto client_name for uma string vazia
-        std::cout << "Insira o nome: ";
-        //Pegando o nome e pondo na variavel
-        std::getline(std::cin , client_name);//O std::ws serve para o getline ignorar os espaços em branco
-    }while(client_name == "");*/
-
-    //Pedindo o email do cliente
+    //Função pra ler e analisar o numero de BI do cliente
+    /*
+        Variavel que guarda o número do BI do cliente -- 03/09/26
+        nº do bilhete é composto por 14 dígitos
+    */
+    std::string id_number {};
+    //Variável que vai verificar se o tamanho da string é o certo -- 03/09/26
+    bool check_len {};
     
-    //Loop pedindo o email do cliente
-    /*do{
-        //Loop se repete enquanto client_email for uma string vazia
-        std::cout << "Insira o email do cliente: \n";
-        //Adicionando o valor a variavel
-        std::getline(std::cin, client_email);
+    /*
+        Input do usuário/inserindo nº do bilhete -- 03/09/26
+    */
+    do{
+        std::cout << "Insira o numero do BI: " << '\n';
+        std::getline(std::cin, id_number);//Armazenando o numero na variavel
+        /*
+            Validação de input -- 03/09/26
+        --------------------------------------
+        Flag do loop, enquanto check_len for false o loop se repete, id_number deve ter exatamente 14 caracteres    
+        */
+        check_len = id_number.length() != 14;
 
-        //Verificando o "@gmail.com" no email
-        found = client_email.find("@gmail.com") == std::string::npos;
+        
+    }while(check_len);
 
-    //Condição para repetir o loop: não ter '@' no email ou o espaço estar vazio
-    }while(client_email == "" || found);
-
-    std::cout << "email: " << client_email;*/
     return 0;
 }

@@ -1,12 +1,18 @@
 #include<iostream>
 #include<string>
+using namespace std;
 
 int main(){
-    std::string ex {};
 
-    std::cout << ": \n";
-    std::getline(std::cin, ex);
-    std::cout << "Pos: " << ex.find('@');
-    //if(ex.find('@'))
+    string n = "01234567890123";
+    cout << "len: " << n.length();
+
+
+
+
+
+
+
+
     return 0;
 }
