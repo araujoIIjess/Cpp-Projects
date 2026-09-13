@@ -5,15 +5,36 @@
 #include<cctype>
 //unção para obter o nome do cliente
 std::string getClientName(){
+    //Contagem dos erros -- 08/09/26
+    int err_count {};
+    /*Variável para verificar se a string do nome está vázia -- 08/09/26
+        Variável que será true qndo a string estiver vazia e false quando a string não estiver vazia -- 11/09/26
+    */
+    bool empty {};
     //nome do cliente
     std::string client_name {};
 
     //Pedindo os dados do cliente e validando input
     do{
-        std::cout << "Insira o nome: " << '\n';
-        std::getline(std::cin, client_name);
-    //Se a string estiver vazia repete o loop
-    }while(client_name == "");
+        /*
+            Se a contagem de erros for diferente de 0 exibe uma mensagem diferente -- 09/09/26
+        */
+        if(err_count != 0){
+            std::cout << "Insira um nome valido: " << '\n';
+            std::getline(std::cin, client_name);
+            
+        }else{
+            std::cout << "Insira o nome: " << '\n';
+            std::getline(std::cin, client_name);
+            //Se a string estiver vazia repete o loop
+        }
+        /*
+            Se empty for true significa que a string está vazia -- 08/09/26
+            adicionar futuramente uma verificação de nome em condições
+        */
+       //check_empty = client_name == "" ? is_empty = true : is_empty = false;
+       empty = client_name.length() == 0;
+    }while(empty);
 
     return client_name;
 }
@@ -24,6 +45,10 @@ std::string getClientmail(){
 
     //validação do email
     bool found {};
+    /*
+        Sera true quando a string estiver vazia -- 13/09/26
+    */
+    bool empty {};
 
     //Pedindo o email e validando
     do{
@@ -35,8 +60,10 @@ std::string getClientmail(){
             Se found for false o loop termina. Mas se for true o loop recomeça
         */
         found = client_email.find("@gmail") == std::string::npos;
+        //empty será true se a string estiver vazia
+        empty = client_email.length() == 0;
 
-    }while(client_email == "" || found); 
+    }while(empty || found); 
 
     return client_email;
 }
@@ -89,7 +116,7 @@ std::string getClientId(){
 }
 
 int main(){
-    std::string id_number {getClientId()};
+    std::string id_number {getClientName()};
 
 
     return 0;
