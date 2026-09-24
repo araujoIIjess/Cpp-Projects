@@ -86,17 +86,17 @@ std::string getClientId(){
     */
     do{
         //Condição da exibicao da mensagem de erro -- 06/09/26
-        if(err_count != 0){
+        /*if(err_count != 0){
             /*
                 Caso a contagem de erros seja diferente de 0 exibe uma mensagem diferente -- 06/09/26
             */
             std::cout << "Insira um numero de BI valido: " << '\n';
             std::getline(std::cin >> std::ws, id_number);
-        }else{
+        /*}else{
 
             std::cout << "Insira o numero do BI: " << '\n';
             std::getline(std::cin >> std::ws, id_number);//Armazenando o numero na variavel
-        }
+        }*/
         /*
             Validação de input -- 03/09/26
         --------------------------------------
