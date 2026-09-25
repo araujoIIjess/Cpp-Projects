@@ -6,7 +6,7 @@
 
 
 int main(){
-    std::string id_number {getClientName()};
+    std::string id_number {getClientId()};
 
 
     return 0;

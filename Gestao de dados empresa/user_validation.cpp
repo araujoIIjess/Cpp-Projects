@@ -1,4 +1,5 @@
 #include "user_validation_h.h"
+#include "input_validation_h.h"
 //unção para obter o nome do cliente
 std::string getClientName(){
     //Contagem dos erros -- 08/09/26
@@ -68,7 +69,6 @@ std::string getClientmail(){
 std::string getClientId(){
 
     //Função pra ler e analisar o numero de BI do cliente
-    constexpr int ID_LENGTH = 14;
     /*
         Variavel que guarda o número do BI do cliente -- 03/09/26
         nº do bilhete é composto por 14 dígitos
@@ -86,24 +86,27 @@ std::string getClientId(){
     */
     do{
         //Condição da exibicao da mensagem de erro -- 06/09/26
-        /*if(err_count != 0){
+        if(err_count != 0){
             /*
                 Caso a contagem de erros seja diferente de 0 exibe uma mensagem diferente -- 06/09/26
             */
             std::cout << "Insira um numero de BI valido: " << '\n';
             std::getline(std::cin >> std::ws, id_number);
-        /*}else{
+        }else{
 
             std::cout << "Insira o numero do BI: " << '\n';
             std::getline(std::cin >> std::ws, id_number);//Armazenando o numero na variavel
-        }*/
+            //passando a string para maiuscula -- 25/09/26
+            id_number = toUpper(id_number);
+        }
         /*
             Validação de input -- 03/09/26
         --------------------------------------
         Flag do loop. Enquanto check_len não for true o loop se repete -- 04/09/26
         e mesmo que a string estiver vazia o loop se repete -- 06/09/26
         */
-        check_len = id_number.length() == ID_LENGTH; 
+       //Função que verifica se o tamanho do nº do bilhete é o certo -- 25/09/26
+        check_len = checkId_lenght(id_number); 
         //err_count é incrementada caso check_len seja falsa, exibe mensagem de erro -- 06/09/26
         if(!check_len) err_count++;
 
