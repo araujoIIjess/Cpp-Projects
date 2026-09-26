@@ -79,6 +79,9 @@ std::string getClientId(){
     /*
         Variável para fazer aparecer a mensagem de erro -- 06/09/26
     */
+   //Variavel que vai verificar se
+   //os primeiros 9 digitos sao numericos
+    bool check_SEQdigits {};
     int err_count {};
     
     /*
@@ -106,7 +109,11 @@ std::string getClientId(){
         e mesmo que a string estiver vazia o loop se repete -- 06/09/26
         */
        //Função que verifica se o tamanho do nº do bilhete é o certo -- 25/09/26
-        check_len = checkId_lenght(id_number); 
+        //check_len = checkId_lenght(id_number); 
+        //Função que verifica se
+        //os primeiros 9 digitos sao numericos
+        check_SEQdigits = checkSeqNumbers(id_number);
+
         //err_count é incrementada caso check_len seja falsa, exibe mensagem de erro -- 06/09/26
         if(!check_len) err_count++;
 

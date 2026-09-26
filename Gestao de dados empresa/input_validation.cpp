@@ -28,9 +28,20 @@ std::string toUpper(std::string id){
 }
 
 bool checkId_lenght(std::string_view id){
+    //Funçao para verificar o tamanho da string
     bool right_len {id.length() == ID_LENGTH ? true : false};
 
     return right_len;
+}
 
-
+bool checkSeqNumbers(std::string_view id){
+    //Funçáo para check os primeiros 9 digitos
+    //se forem numericos retorna true
+    //se não forem retorna false
+    for(std::size_t i {}; i < numSEQ_LENGTH; i++){
+        if(!std::isdigit(static_cast<unsigned char>(id[i]))){
+            return false;
+        }
+    }
+    return true;
 }
