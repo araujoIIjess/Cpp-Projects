@@ -109,7 +109,7 @@ std::string getClientId(){
         e mesmo que a string estiver vazia o loop se repete -- 06/09/26
         */
        //Função que verifica se o tamanho do nº do bilhete é o certo -- 25/09/26
-        //check_len = checkId_lenght(id_number); 
+        check_len = checkId_lenght(id_number); 
         //Função que verifica se
         //os primeiros 9 digitos sao numericos
         check_SEQdigits = checkSeqNumbers(id_number);
@@ -117,7 +117,7 @@ std::string getClientId(){
         //err_count é incrementada caso check_len seja falsa, exibe mensagem de erro -- 06/09/26
         if(!check_len) err_count++;
 
-    }while(!check_len);
+    }while(!(check_len || check_SEQdigits));
 
     return id_number;
 }
