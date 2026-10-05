@@ -2,7 +2,7 @@
 #define INPUT_VALIDATION_H
 
 #include "validation_headers.h"
-bool checkId_lenght(std::string_view id);
+bool checkId_length(std::string_view id);
 bool checkSeqNumbers(std::string_view id);
 std::string toUpper(std::string id);
 

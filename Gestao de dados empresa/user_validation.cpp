@@ -95,6 +95,8 @@ std::string getClientId(){
             */
             std::cout << "Insira um numero de BI valido: " << '\n';
             std::getline(std::cin >> std::ws, id_number);
+            //toUpper tambem pode ser executada aqui -- 05/10/26
+            id_number = toUpper(id_number);
         }else{
 
             std::cout << "Insira o numero do BI: " << '\n';
@@ -107,17 +109,25 @@ std::string getClientId(){
         --------------------------------------
         Flag do loop. Enquanto check_len não for true o loop se repete -- 04/09/26
         e mesmo que a string estiver vazia o loop se repete -- 06/09/26
+        ...caso check_len e checkSEQdigitis também nao sejam true o loop se repete
+        Todas as funções de verificação precisam de retornar true para que o loop não se repita -- 05/10/26
         */
        //Função que verifica se o tamanho do nº do bilhete é o certo -- 25/09/26
-        check_len = checkId_lenght(id_number); 
-        //Função que verifica se
-        //os primeiros 9 digitos sao numericos
-        check_SEQdigits = checkSeqNumbers(id_number);
-
+        check_len = checkId_length(id_number); 
+        //checkSEQdigits só vai ser executada quando check_len for true
+        if(check_len){
+            //Função que verifica se
+            //os primeiros 9 digitos sao numericos
+            check_SEQdigits = checkSeqNumbers(id_number);
+            //Função que vefica se
+            //os digitos 9-10 sao letras
+        }
         //err_count é incrementada caso check_len seja falsa, exibe mensagem de erro -- 06/09/26
-        if(!check_len) err_count++;
-
-    }while(!(check_len || check_SEQdigits));
+        if(!(check_len && check_SEQdigits)){
+            err_count++;
+        }
+        //Bug fixed -- 05/10/26
+    }while(!(check_len && check_SEQdigits));
 
     return id_number;
 }

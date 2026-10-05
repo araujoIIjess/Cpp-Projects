@@ -27,7 +27,7 @@ std::string toUpper(std::string id){
     return id;
 }
 
-bool checkId_lenght(std::string_view id){
+bool checkId_length(std::string_view id){
     //Funçao para verificar o tamanho da string
     bool right_len {id.length() == ID_LENGTH ? true : false};
 
@@ -44,4 +44,13 @@ bool checkSeqNumbers(std::string_view id){
         }
     }
     return true;
+}
+
+bool checkLettrs(std::string_view id){
+    //Função que verifica os digitos 9-10
+    //e verifica se são letras
+    //se forem, retorna true,otherwise retorna false
+    constexpr std::size_t begin {9};
+    constexpr std::size_t end{11};
+    
 }
