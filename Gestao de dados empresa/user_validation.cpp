@@ -1,5 +1,5 @@
 #include "user_validation_h.h"
-#include "input_validation_h.h"
+#include "input_validation_h.h" 
 //unção para obter o nome do cliente
 std::string getClientName(){
     //Contagem dos erros -- 08/09/26
@@ -74,14 +74,13 @@ std::string getClientId(){
         nº do bilhete é composto por 14 dígitos
     */
     std::string id_number {};
+    bool checkSEQ_numbers {};
+    bool checkSEQ_letters {};
     //Variável que vai verificar se o tamanho da string é o certo -- 03/09/26
     bool check_len {};
     /*
         Variável para fazer aparecer a mensagem de erro -- 06/09/26
     */
-   //Variavel que vai verificar se
-   //os primeiros 9 digitos sao numericos
-    bool check_SEQdigits {};
     int err_count {};
     
     /*
@@ -96,13 +95,11 @@ std::string getClientId(){
             std::cout << "Insira um numero de BI valido: " << '\n';
             std::getline(std::cin >> std::ws, id_number);
             //toUpper tambem pode ser executada aqui -- 05/10/26
-            id_number = toUpper(id_number);
         }else{
 
             std::cout << "Insira o numero do BI: " << '\n';
             std::getline(std::cin >> std::ws, id_number);//Armazenando o numero na variavel
             //passando a string para maiuscula -- 25/09/26
-            id_number = toUpper(id_number);
         }
         /*
             Validação de input -- 03/09/26
@@ -112,22 +109,26 @@ std::string getClientId(){
         ...caso check_len e checkSEQdigitis também nao sejam true o loop se repete
         Todas as funções de verificação precisam de retornar true para que o loop não se repita -- 05/10/26
         */
-       //Função que verifica se o tamanho do nº do bilhete é o certo -- 25/09/26
+        //Passando toda a string para maiusculo
+        id_number = toUpper(id_number);
+        //Função que verifica se o tamanho do nº do bilhete é o certo -- 25/09/26
         check_len = checkId_length(id_number); 
         //checkSEQdigits só vai ser executada quando check_len for true
         if(check_len){
             //Função que verifica se
             //os primeiros 9 digitos sao numericos
-            check_SEQdigits = checkSeqNumbers(id_number);
+            checkSEQ_numbers = checkSeqNumbers(id_number);
             //Função que vefica se
             //os digitos 9-10 sao letras
+            checkSEQ_letters = checkSeqLetters(id_number);
         }
         //err_count é incrementada caso check_len seja falsa, exibe mensagem de erro -- 06/09/26
-        if(!(check_len && check_SEQdigits)){
+        if(!(check_len && checkSEQ_letters && checkSEQ_numbers)){
             err_count++;
         }
-        //Bug fixed -- 05/10/26
-    }while(!(check_len && check_SEQdigits));
+    }while(!(check_len && checkSEQ_numbers && checkSEQ_letters));
+
+    std::cout << "Seu BI eh valido";
 
     return id_number;
 }

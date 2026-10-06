@@ -35,6 +35,7 @@ bool checkId_length(std::string_view id){
 }
 
 bool checkSeqNumbers(std::string_view id){
+    //Está função so será executada caso check_len seja true
     //Funçáo para check os primeiros 9 digitos
     //se forem numericos retorna true
     //se não forem retorna false
@@ -46,11 +47,18 @@ bool checkSeqNumbers(std::string_view id){
     return true;
 }
 
-bool checkLettrs(std::string_view id){
+bool checkSeqLetters(std::string_view id){
+    //Esta função só será executada caso check_len seja true
     //Função que verifica os digitos 9-10
     //e verifica se são letras
     //se forem, retorna true,otherwise retorna false
-    constexpr std::size_t begin {9};
-    constexpr std::size_t end{11};
-    
+    //string_end é igual a 11
+    constexpr std::size_t string_end{numSEQ_LENGTH + lettrSEQ_LENGTH};
+    //Se na posição i não for uma letra, retorna false
+    for(std::size_t i {numSEQ_LENGTH}; i < string_end; i++){
+        if(!(std::isalpha(static_cast<unsigned char>(id[i])))){
+            return false;
+        }
+    }
+    return true;
 }
