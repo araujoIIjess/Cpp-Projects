@@ -76,6 +76,7 @@ std::string getClientId(){
     std::string id_number {};
     bool checkSEQ_numbers {};
     bool checkSEQ_letters {};
+    bool checkSEQ_ctrlnumbers {};
     //Variável que vai verificar se o tamanho da string é o certo -- 03/09/26
     bool check_len {};
     /*
@@ -118,15 +119,22 @@ std::string getClientId(){
             //Função que verifica se
             //os primeiros 9 digitos sao numericos
             checkSEQ_numbers = checkSeqNumbers(id_number);
-            //Função que vefica se
-            //os digitos 9-10 sao letras
-            checkSEQ_letters = checkSeqLetters(id_number);
+            //Se checkSEQ_numbers for true
+            //A validação das letras fica habilitada
+            if(checkSEQ_numbers){
+                checkSEQ_letters = checkSeqLetters(id_number);
+                //Se checkSEQ_letters for true
+                //a validaçao dos digitos de controle fica habilitada
+                if(checkSEQ_letters){
+                    checkSEQ_ctrlnumbers = checkSeqCtrlnumbers(id_number);
+                }
+            }
         }
         //err_count é incrementada caso check_len seja falsa, exibe mensagem de erro -- 06/09/26
         if(!(check_len && checkSEQ_letters && checkSEQ_numbers)){
             err_count++;
         }
-    }while(!(check_len && checkSEQ_numbers && checkSEQ_letters));
+    }while(!(check_len && checkSEQ_numbers && checkSEQ_letters && checkSEQ_ctrlnumbers));
 
     std::cout << "Seu BI eh valido";
 

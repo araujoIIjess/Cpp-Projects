@@ -53,12 +53,25 @@ bool checkSeqLetters(std::string_view id){
     //e verifica se são letras
     //se forem, retorna true,otherwise retorna false
     //string_end é igual a 11
-    constexpr std::size_t string_end{numSEQ_LENGTH + lettrSEQ_LENGTH};
+    constexpr std::size_t loop_end{numSEQ_LENGTH + lettrSEQ_LENGTH};
     //Se na posição i não for uma letra, retorna false
-    for(std::size_t i {numSEQ_LENGTH}; i < string_end; i++){
+    for(std::size_t i {numSEQ_LENGTH}; i < loop_end; i++){
         if(!(std::isalpha(static_cast<unsigned char>(id[i])))){
             return false;
         }
     }
+    return true;
+}
+
+bool checkSeqCtrlnumbers(std::string_view id){
+    //Função que vai verificar os dígitos de controlo
+    //Começa a contar a partir do 11º indice e termina no 14º
+    constexpr std::size_t loop_end {ID_LENGTH};
+    for(std::size_t i {numSEQ_LENGTH + lettrSEQ_LENGTH}; i < loop_end; i++){
+        if(!(std::isdigit(static_cast<unsigned char>(id[i])))){
+            return false;
+        }
+    }
+
     return true;
 }
