@@ -77,6 +77,7 @@ std::string getClientId(){
     bool checkSEQ_numbers {};
     bool checkSEQ_letters {};
     bool checkSEQ_ctrlnumbers {};
+    bool not_validated {};
     //Variável que vai verificar se o tamanho da string é o certo -- 03/09/26
     bool check_len {};
     /*
@@ -114,27 +115,36 @@ std::string getClientId(){
         id_number = toUpper(id_number);
         //Função que verifica se o tamanho do nº do bilhete é o certo -- 25/09/26
         check_len = checkId_length(id_number); 
-        //checkSEQdigits só vai ser executada quando check_len for true
+        //Caso o BI tenha os q4 digitos as funções de verificação serão executadas
         if(check_len){
-            //Função que verifica se
-            //os primeiros 9 digitos sao numericos
+            //Verificação da primeira sequencia de numeros
             checkSEQ_numbers = checkSeqNumbers(id_number);
-            //Se checkSEQ_numbers for true
-            //A validação das letras fica habilitada
+            //Se a sequencia de números estiver certa executa a verificação das letras
             if(checkSEQ_numbers){
                 checkSEQ_letters = checkSeqLetters(id_number);
-                //Se checkSEQ_letters for true
-                //a validaçao dos digitos de controle fica habilitada
+                //Se a sequencia de letras estiver certa verifica a sequencia de digitos de controle
                 if(checkSEQ_letters){
                     checkSEQ_ctrlnumbers = checkSeqCtrlnumbers(id_number);
                 }
             }
         }
         //err_count é incrementada caso check_len seja falsa, exibe mensagem de erro -- 06/09/26
-        if(!(check_len && checkSEQ_letters && checkSEQ_numbers)){
+        not_validated = !(check_len && checkSEQ_letters && checkSEQ_numbers && checkSEQ_ctrlnumbers);
+
+        if(not_validated){
+            /*
+                Se alguma das variáveis de controle for true e alguma for false
+                reinicia todas as variáveis pra false
+                incrementa err_count 
+                e reinicia o loop
+            */
+            check_len = false;
+            checkSEQ_numbers = false;
+            checkSEQ_letters = false;
+            checkSEQ_ctrlnumbers = false;
             err_count++;
         }
-    }while(!(check_len && checkSEQ_numbers && checkSEQ_letters && checkSEQ_ctrlnumbers));
+    }while(not_validated);
 
     std::cout << "Seu BI eh valido";
 
